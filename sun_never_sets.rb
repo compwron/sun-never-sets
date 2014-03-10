@@ -2,6 +2,8 @@ require 'time'
 require 'sun_times'
 require 'geokit'
 
+require_relative 'date_line'
+
 def stuff filename
   date = DateTime.now
   IO.readlines(filename).map { |city|
@@ -14,8 +16,11 @@ def stuff filename
     sunrise = SunTimes.new.rise(date, lat, long)
     sunset = SunTimes.new.set(date, lat, long)
 
-    puts "#{compose_line(sunrise, sunset)} #{city.strip}"
-
+    DateLine.new(sunrise, sunset, city)
+  }.sort { |date_line|
+    date_line.sunrise.hour * 24 + date_line.sunrise.min 
+  }.map { |date_line|
+      "#{compose_line(date_line.sunrise, date_line.sunset)} #{date_line.city}"
   }
 end
 
@@ -39,5 +44,5 @@ def compose_line(sunrise, sunset)
   city_line
 end
 
-stuff(ARGV[0] || 'input/small_cities.txt')
+puts stuff(ARGV[0] || 'input/small_cities.txt').join("\n")
 

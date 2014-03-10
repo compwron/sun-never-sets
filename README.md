@@ -51,5 +51,4 @@ Sunrise/sunset times are on the day that the program is run
 ```
 
 TODO:
-- calculate down to the minute (display 15-min increments?)
-- show gaps
+- order by sunrise?
