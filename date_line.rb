@@ -3,6 +3,6 @@ class DateLine
   def initialize(sunrise, sunset, city)
     @sunrise = sunrise
     @sunset = sunset
-    @city = city
+    @city = city.strip
   end
 end
