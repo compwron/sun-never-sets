@@ -31,14 +31,10 @@ class DateLine
     end
   end
 
-
   def to_s
     city_line = ''
 
     (1..@@fifteen_minute_increments_in_day).each { |quarter_hour|
-
-
-
       city_line += choose_symbol(quarter_hour)
     }
     city_line + " #{@city}"

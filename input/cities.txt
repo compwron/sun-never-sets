@@ -16,7 +16,6 @@ Pune
 Hamburg
 London
 Manchester
-Beijing
 Chengdu
 Shanghai
 Xi'an
@@ -26,6 +25,5 @@ Melbourne
 Perth
 Singapore
 Sydney
-Brisbane
 Johannesburg
 Kampala

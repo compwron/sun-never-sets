@@ -8,7 +8,7 @@ def stuff filename
   date = DateTime.now
   IO.readlines(filename).map { |city|
 
-    sleep 0.5 # prevent TooManyQueriesError
+    sleep 0.25 # prevent TooManyQueriesError
     res = Geokit::Geocoders::GoogleGeocoder.geocode(city)
     lat = res.lat
     long = res.lng
@@ -17,12 +17,10 @@ def stuff filename
     sunset = SunTimes.new.set(date, lat, long)
 
     DateLine.new(sunrise, sunset, city)
-  }.sort { |date_line|
-    date_line.sunrise.hour * 24 + date_line.sunrise.min 
+  }.sort_by { |date_line|
+    date_line.sunrise.hour * 24 + date_line.sunrise.min
   }
 end
-
-
 
 puts stuff(ARGV[0] || 'input/small_cities.txt').join("\n")
 
